@@ -4,3 +4,6 @@
 [submodule "dbit-products-ms"]
 	path = dbit-products-ms
 	url = https://github.com/Nest-Microservices-Coto/products-ms.git
+[submodule "dbit-orders-ms"]
+	path = dbit-orders-ms
+	url = https://github.com/Nest-Microservices-Coto/orders-ms.git

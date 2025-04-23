@@ -1,3 +1,6 @@
 [submodule "dbit-client-gateway"]
 	path = dbit-client-gateway
 	url = https://github.com/Nest-Microservices-Coto/client-gateway.git
+[submodule "dbit-products-ms"]
+	path = dbit-products-ms
+	url = https://github.com/Nest-Microservices-Coto/products-ms.git

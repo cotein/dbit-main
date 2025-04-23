@@ -1,0 +1,3 @@
+[submodule "dbit-client-gateway"]
+	path = dbit-client-gateway
+	url = https://github.com/Nest-Microservices-Coto/client-gateway.git

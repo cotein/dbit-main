@@ -2,51 +2,51 @@ version: '3.8'
 
 services:
 
-  nats-server:
+  dbit-nats-server:
     image: nats:latest
     ports:
       - 8222:8222
     
 
-  client-gateway:
-    build: ./client-gateway
+  dbit-client-gateway:
+    build: ./dbit-client-gateway
     ports:
       - ${CLIENT_GATEWAY_PORT}:3000
     volumes:
-      - ./client-gateway/src:/usr/src/app/src
+      - ./dbit-client-gateway/src:/usr/src/app/src
     command: npm run start:dev
     environment:
       - PORT=3000
       - NATS_SERVERS=nats://nats-server:4222
   
-  products-ms:
-    build: ./products-ms
+  dbit-products-ms:
+    build: ./dbit-products-ms
     volumes:
-      - ./products-ms/src:/usr/src/app/src
+      - ./dbit-products-ms/src:/usr/src/app/src
     command: npm run start:dev
     environment:
       - PORT=3000
       - NATS_SERVERS=nats://nats-server:4222
       - DATABASE_URL=file:./dev.db
   
-  orders-ms:
+  dbit-orders-ms:
     depends_on:
-      - orders-db
-    build: ./orders-ms
+      - dbit-orders-db
+    build: ./dbit-orders-ms
     volumes:
-      - ./orders-ms/src:/usr/src/app/src
+      - ./dbit-orders-ms/src:/usr/src/app/src
     command: npm run start:dev
     environment:
       - PORT=3002
       - NATS_SERVERS=nats://nats-server:4222
-      - DATABASE_URL=postgresql://postgres:123456@orders-db:5432/ordersdb?schema=public
+      - DATABASE_URL=postgresql://postgres:123456@dbit-orders-db:5432/ordersdb?schema=public
 
-  orders-db:
-    container_name: orders-db
+  dbit-orders-db:
+    container_name: dbit-orders-db
     image: postgres:16.2
     restart: always
     volumes:
-      - ./orders-ms/postgres:/var/lib/postgresql/data
+      - ./dbit-orders-ms/postgres:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
@@ -54,9 +54,9 @@ services:
       - POSTGRES_PASSWORD=123456
       - POSTGRES_DB=ordersdb
   
-  portainer-ms:
+  dbit-portainer-ms:
     image: portainer/portainer-ce:2.11.0
-    container_name: portainer-ms
+    container_name: dbit-portainer-ms
     ports:
       - "9000:9000"
       #- "9443:9443"

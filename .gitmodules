@@ -7,3 +7,6 @@
 [submodule "dbit-orders-ms"]
 	path = dbit-orders-ms
 	url = https://github.com/Nest-Microservices-Coto/orders-ms.git
+[submodule "dbit-payments-ms"]
+	path = dbit-payments-ms
+	url = https://github.com/Nest-Microservices-Coto/dbit-payments-ms.git
